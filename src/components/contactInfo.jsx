@@ -5,21 +5,27 @@ export function ContactInfo ({firstName, lastName, tel, email, onChange}) {
     <>
       <h2>Contact Info</h2>
       <div className="inputSection">
+          <div>
           <label>
             First name:
             <input
               id="firstNameInput" value={firstName} onChange={onChange} />
           </label>
+          </div>
+          <div>
           <label>
             Last name:
             <input
               id="lastNameInput" value={lastName} onChange={onChange} />
           </label>
+          </div>
+          <div>
           <label>
             Telephone:
-            <input type="number"
+            <input type="tel"
               id="telephoneInput" value={tel} onChange={onChange} />
           </label>
+          </div>
         </div>
     </>
   )

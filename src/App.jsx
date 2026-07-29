@@ -19,17 +19,19 @@ function App() {
         break;
       case "telephoneInput":
         const value = event.target.value;
-        const numeric = /^[0-9]+*$/;
-      //   if (numeric.test(value)) {
-      //     console.log(numeric.test(value));
-      //     setTelephoneNumber(value);
-      //   } else {
-      //     console.log(value.match(numeric));
-      //   }
-      //   // if (value.match(/^[0-9]*$/)) {
-      //   // } else {
-      //   //   throw new TypeError (`${value} does not match` );
-      //   // }
+        const lastChar = value.charAt(value.length - 1);
+        if (!lastChar.match(/[0-9]?/)) {
+          throw new TypeError (`${value} does not match`);
+        }
+        if (event.nativeEvent.inputType === "deleteContentBackward") {
+          setTelephoneNumber(value);
+          return;
+        }
+        if ([4, 9].includes(value.length)) {
+          setTelephoneNumber(value.slice(0, value.length - 1) + "-" + lastChar);
+        } else {
+          setTelephoneNumber(value);
+        }
         break;
     }
   }
