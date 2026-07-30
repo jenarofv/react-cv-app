@@ -19,13 +19,13 @@ function App() {
         break;
       case "telephoneInput":
         const value = event.target.value;
-        const lastChar = value.charAt(value.length - 1);
-        if (!lastChar.match(/[0-9]?/)) {
-          throw new TypeError (`${value} does not match`);
-        }
         if (event.nativeEvent.inputType === "deleteContentBackward") {
           setTelephoneNumber(value);
           return;
+        }
+        const lastChar = value.charAt(value.length - 1);
+        if (!lastChar.match(/^[0-9]$/)) {
+          throw new TypeError (`${lastChar} is not a number`);
         }
         if ([4, 9].includes(value.length)) {
           setTelephoneNumber(value.slice(0, value.length - 1) + "-" + lastChar);
