@@ -1,10 +1,17 @@
 import "../styles/styles.css";
 
-export function ContactInfo({ firstName, lastName, tel, email, onChange }) {
+export function ContactInfo({
+  firstName,
+  lastName,
+  tel,
+  email,
+  onChange,
+  submitContactInfo,
+}) {
   return (
-    <>
+    <div className="input-container">
       <h2>Contact Info</h2>
-      <div className="inputSection">
+      <div className="input-section">
         <div>
           <label>
             First name:
@@ -40,6 +47,7 @@ export function ContactInfo({ firstName, lastName, tel, email, onChange }) {
           </label>
         </div>
       </div>
-    </>
+      <button onclick={submitContactInfo}> add info </button>
+    </div>
   );
 }

@@ -19,5 +19,25 @@ input[type="number"] {
 }
 
 .input-section {
+  display: grid;
+  justify-content: space-evenly;
+  grid-template-columns: repeat(auto-fit, 200px);
+  align-items: center;
+}
+
+/* taken from https://stackoverflow.com/a/50175619 */
+.input-section > label {
   display: flex;
+  align-items: center;
+}
+
+.input-section + button {
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+button + div {
+  margin-top: 100px;
 }

@@ -13,10 +13,17 @@ function App() {
   const [studyTitle, setStudyTitle] = useState("");
   const [studyYear, setStudyYear] = useState("");
   const [studyDescription, setStudyDescription] = useState("");
+  const [jobTitle, setjobTitle] = useState("");
+  const [companyName, setcompanyName] = useState("");
+  const [startDate, setstartDate] = useState("");
+  const [endDate, setendDate] = useState("");
+  const [jobDescription, setjobDescription] = useState("");
 
-  function doNothing() {
-    return;
-  }
+  function handleExperienceUpdate(event) {}
+
+  function handleEducationUpdate(event) {}
+
+  function submitContactInfo() {}
 
   function handleContactInfoUpdate(event) {
     const id = event.target.id;
@@ -52,6 +59,7 @@ function App() {
         } else {
           target.classList.add("valid-email");
         }
+        break;
     }
   }
 
@@ -67,18 +75,28 @@ function App() {
         email={emailAddress}
         onChange={handleContactInfoUpdate}
       />
+      <hr />
       <div>
         <Education
           schoolName={schoolName}
           studyTitle={studyTitle}
           studyYear={studyYear}
           studyDescription={studyDescription}
-          onChange={doNothing}
+          onChange={handleEducationUpdate}
         />
       </div>
+      <hr />
       <div>
-        <ProfessionalExperience />
+        <ProfessionalExperience
+          jobTitle={jobTitle}
+          companyName={companyName}
+          startDate={startDate}
+          endDate={endDate}
+          jobDescription={jobDescription}
+          onChange={handleExperienceUpdate}
+        />
       </div>
+      <hr />
     </>
   );
 }
