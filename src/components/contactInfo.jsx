@@ -25,6 +25,11 @@ export function ContactInfo ({firstName, lastName, tel, email, onChange}) {
             <input type="tel"
               id="telephoneInput" value={tel} onChange={onChange} />
           </label>
+          <label>
+            Email:
+            <input type="text"
+              id="emailInput" value={email} onChange={onChange} />
+          </label>
           </div>
         </div>
     </>

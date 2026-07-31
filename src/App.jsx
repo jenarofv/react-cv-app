@@ -10,20 +10,22 @@ function App() {
 
   function handleContactInfoUpdate (event) {
     const id = event.target.id;
+    const target = event.target;
+    const value = event.target.value;
+    const lastChar = value.charAt(value.length - 1);
+    const emailRegexp = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
     switch (id) {
       case "firstNameInput":
-        setFirstName(event.target.value);
+        setFirstName(value);
         break;
       case "lastNameInput":
-        setLastName(event.target.value);
+        setLastName(value);
         break;
       case "telephoneInput":
-        const value = event.target.value;
         if (event.nativeEvent.inputType === "deleteContentBackward") {
           setTelephoneNumber(value);
           return;
         }
-        const lastChar = value.charAt(value.length - 1);
         if (!lastChar.match(/^[0-9]$/)) {
           throw new TypeError (`${lastChar} is not a number`);
         }
@@ -33,6 +35,11 @@ function App() {
           setTelephoneNumber(value);
         }
         break;
+      case "emailInput":
+        setEmailAddress(value);
+        if (!value.match(emailRegexp)) {
+          target.classList.add("wrong-email")
+        }
     }
   }
 
