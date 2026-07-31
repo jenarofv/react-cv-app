@@ -8,7 +8,7 @@ export function Education({
   onChange,
 }) {
   return (
-    <>
+    <div className="input-section">
       <h2>Education</h2>
       <label>
         School Name
@@ -29,6 +29,6 @@ export function Education({
         onChange={onChange}
         maxLength="500"
       />
-    </>
+    </div>
   );
 }

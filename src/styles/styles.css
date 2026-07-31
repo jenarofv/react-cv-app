@@ -9,3 +9,15 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+.invalid-email {
+  background-color: pink;
+}
+
+.valid-email {
+  background-color: palegreen;
+}
+
+.input-section {
+  display: flex;
+}

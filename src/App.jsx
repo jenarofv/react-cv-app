@@ -9,13 +9,16 @@ function App() {
   const [lastName, setLastName] = useState("");
   const [telephoneNumber, setTelephoneNumber] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
-  const [school, setSchool] = useState("");
   const [schoolName, setSchoolName] = useState("");
   const [studyTitle, setStudyTitle] = useState("");
   const [studyYear, setStudyYear] = useState("");
   const [studyDescription, setStudyDescription] = useState("");
 
-  function handleContactInfoUpdate (event) {
+  function doNothing() {
+    return;
+  }
+
+  function handleContactInfoUpdate(event) {
     const id = event.target.id;
     const target = event.target;
     const value = event.target.value;
@@ -45,7 +48,9 @@ function App() {
       case "emailInput":
         setEmailAddress(value);
         if (!value.match(emailRegexp)) {
-          target.classList.add("wrong-email")
+          target.classList.add("invalid-email");
+        } else {
+          target.classList.add("valid-email");
         }
     }
   }
@@ -63,10 +68,16 @@ function App() {
         onChange={handleContactInfoUpdate}
       />
       <div>
-        <Education/>
+        <Education
+          schoolName={schoolName}
+          studyTitle={studyTitle}
+          studyYear={studyYear}
+          studyDescription={studyDescription}
+          onChange={doNothing}
+        />
       </div>
       <div>
-        <h2>Professional Experience</h2>
+        <ProfessionalExperience />
       </div>
     </>
   );
