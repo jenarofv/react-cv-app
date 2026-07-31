@@ -1,12 +1,18 @@
 import { useState } from 'react'
 import './App.css'
 import { ContactInfo } from './components/contactInfo.jsx'
+import { Education } from './components/education.jsx'
 
 function App() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [telephoneNumber, setTelephoneNumber] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
+  const [school, setSchool] = useState("");
+  const [schoolName, setSchoolName] = useState("");
+  const [studyTitle, setStudyTitle] = useState("");
+  const [studyYear, setStudyYear] = useState("");
+  const [studyDescription, setStudyDescription] = useState("");
 
   function handleContactInfoUpdate (event) {
     const id = event.target.id;
@@ -56,7 +62,7 @@ function App() {
         onChange={handleContactInfoUpdate}
       />
       <div>
-        <h2>Education</h2>
+        <Education/>
       </div>
       <div>
         <h2>Professional Experience</h2>
