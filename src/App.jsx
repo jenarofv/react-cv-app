@@ -1,7 +1,8 @@
-import { useState } from 'react'
-import './App.css'
-import { ContactInfo } from './components/contactInfo.jsx'
-import { Education } from './components/education.jsx'
+import { useState } from "react";
+import "./App.css";
+import { ContactInfo } from "./components/contactInfo.jsx";
+import { Education } from "./components/education.jsx";
+import { ProfessionalExperience } from "./components/experience.jsx";
 
 function App() {
   const [firstName, setFirstName] = useState("");
@@ -33,7 +34,7 @@ function App() {
           return;
         }
         if (!lastChar.match(/^[0-9]$/)) {
-          throw new TypeError (`${lastChar} is not a number`);
+          throw new TypeError(`${lastChar} is not a number`);
         }
         if ([4, 9].includes(value.length)) {
           setTelephoneNumber(value.slice(0, value.length - 1) + "-" + lastChar);
@@ -68,7 +69,7 @@ function App() {
         <h2>Professional Experience</h2>
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
