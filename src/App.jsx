@@ -4,22 +4,50 @@ import { ContactInfo } from "./components/contactInfo.jsx";
 import { Education } from "./components/education.jsx";
 import { ProfessionalExperience } from "./components/experience.jsx";
 
+function getToday() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const monthNumber = now.getMonth() + 1;
+  const monthString = monthNumber < 10 ? `0${monthNumber}` : `${monthNumber}`;
+  const date = now.getDate();
+  const dateString = `${year}-${monthString}-${date}`;
+  return dateString;
+}
+
 function App() {
+  const today = getToday();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [telephoneNumber, setTelephoneNumber] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [schoolName, setSchoolName] = useState("");
   const [studyTitle, setStudyTitle] = useState("");
-  const [studyYear, setStudyYear] = useState("");
+  const [studyYear, setStudyYear] = useState(today);
   const [studyDescription, setStudyDescription] = useState("");
-  const [jobTitle, setjobTitle] = useState("");
-  const [companyName, setcompanyName] = useState("");
-  const [startDate, setstartDate] = useState("");
-  const [endDate, setendDate] = useState("");
-  const [jobDescription, setjobDescription] = useState("");
+  const [jobTitle, setJobTitle] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [startDate, setStartDate] = useState(today);
+  const [endDate, setEndDate] = useState(today);
+  const [jobDescription, setJobDescription] = useState("");
+  console.log(today);
 
-  function handleExperienceUpdate(event) {}
+  function handleExperienceUpdate(event) {
+    const target = event.target;
+    const id = target.id;
+    const value = target.value;
+    switch (id) {
+      case "companyName":
+        break;
+      case "jobTitle":
+        break;
+      case "startDate":
+        break;
+      case "endDate":
+        break;
+      case "jobDescription":
+        break;
+    }
+  }
 
   function handleEducationUpdate(event) {}
 
