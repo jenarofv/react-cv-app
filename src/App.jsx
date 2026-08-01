@@ -110,26 +110,22 @@ function App() {
         onChange={handleContactInfoUpdate}
       />
       <hr />
-      <div>
-        <Education
-          schoolName={schoolName}
-          studyTitle={studyTitle}
-          studyYear={studyYear}
-          studyDescription={studyDescription}
-          onChange={handleEducationUpdate}
-        />
-      </div>
+      <Education
+        schoolName={schoolName}
+        studyTitle={studyTitle}
+        studyYear={studyYear}
+        studyDescription={studyDescription}
+        onChange={handleEducationUpdate}
+      />
       <hr />
-      <div>
-        <ProfessionalExperience
-          jobTitle={jobTitle}
-          companyName={companyName}
-          startDate={startDate}
-          endDate={endDate}
-          jobDescription={jobDescription}
-          onChange={handleExperienceUpdate}
-        />
-      </div>
+      <ProfessionalExperience
+        jobTitle={jobTitle}
+        companyName={companyName}
+        startDate={startDate}
+        endDate={endDate}
+        jobDescription={jobDescription}
+        onChange={handleExperienceUpdate}
+      />
       <hr />
     </>
   );
