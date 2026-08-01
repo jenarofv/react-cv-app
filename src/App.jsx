@@ -80,7 +80,7 @@ function App() {
         if (!lastChar.match(/^[0-9]$/)) {
           throw new TypeError(`${lastChar} is not a number`);
         }
-        if ([4, 9].includes(value.length)) {
+        if ([4, 8].includes(value.length)) {
           setTelephoneNumber(value.slice(0, value.length - 1) + "-" + lastChar);
         } else {
           setTelephoneNumber(value);
