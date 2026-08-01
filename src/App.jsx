@@ -29,27 +29,33 @@ function App() {
   const [startDate, setStartDate] = useState(today);
   const [endDate, setEndDate] = useState(today);
   const [jobDescription, setJobDescription] = useState("");
-  console.log(today);
 
   function handleExperienceUpdate(event) {
     const target = event.target;
     const id = target.id;
     const value = target.value;
-    switch (id) {
-      case "companyName":
-        break;
-      case "jobTitle":
-        break;
-      case "startDate":
-        break;
-      case "endDate":
-        break;
-      case "jobDescription":
-        break;
-    }
+    const functions = {
+      companyName: setCompanyName,
+      jobTitle: setJobTitle,
+      startDate: setStartDate,
+      endDate: setEndDate,
+      jobDescription: setJobDescription,
+    };
+    functions[id](value);
   }
 
-  function handleEducationUpdate(event) {}
+  function handleEducationUpdate(event) {
+    const target = event.target;
+    const id = target.id;
+    const value = target.value;
+    const functions = {
+      schoolName: setSchoolName,
+      studyTitle: setStudyTitle,
+      studyYear: setStudyYear,
+      studyDescription: setStudyDescription,
+    };
+    functions[id](value);
+  }
 
   function submitContactInfo() {}
 
