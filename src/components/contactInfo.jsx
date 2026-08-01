@@ -47,7 +47,7 @@ export function ContactInfo({
           </label>
         </div>
       </div>
-      <button onclick={submitContactInfo}> add info </button>
+      <button onClick={submitContactInfo}> add info </button>
     </div>
   );
 }
