@@ -1,13 +1,6 @@
 import "../styles/styles.css";
 
-export function ContactInfo({
-  firstName,
-  lastName,
-  tel,
-  email,
-  onChange,
-  submitContactInfo,
-}) {
+export function ContactInfo({ firstName, lastName, tel, email, onChange }) {
   return (
     <div className="input-container">
       <h2>Contact Info</h2>
@@ -47,7 +40,6 @@ export function ContactInfo({
           </label>
         </div>
       </div>
-      <button onClick={submitContactInfo}> add info </button>
     </div>
   );
 }

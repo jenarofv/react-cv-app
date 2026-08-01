@@ -3,6 +3,7 @@ import "./App.css";
 import { ContactInfo } from "./components/contactInfo.jsx";
 import { Education } from "./components/education.jsx";
 import { ProfessionalExperience } from "./components/experience.jsx";
+import { OutputContactInfo } from "./components/Output.jsx";
 
 function getToday() {
   const now = new Date();
@@ -56,8 +57,6 @@ function App() {
     };
     functions[id](value);
   }
-
-  function submitContactInfo() {}
 
   function handleContactInfoUpdate(event) {
     const id = event.target.id;
@@ -127,6 +126,13 @@ function App() {
         onChange={handleExperienceUpdate}
       />
       <hr />
+      <h2> Output CV </h2>
+      <OutputContactInfo
+        firstName={firstName}
+        lastName={lastName}
+        telephoneNumber={telephoneNumber}
+        emailAddress={emailAddress}
+      />
     </>
   );
 }

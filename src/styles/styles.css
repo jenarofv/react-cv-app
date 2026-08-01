@@ -41,3 +41,8 @@ input[type="number"] {
 button + div {
   margin-top: 100px;
 }
+
+.phone-email-container {
+  display: flex;
+  justify-content: space-around;
+}
