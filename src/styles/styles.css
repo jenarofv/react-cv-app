@@ -11,11 +11,11 @@ input[type="number"] {
 }
 
 .invalid-email {
-  background-color: pink;
+  background-color: light-dark(pink, indianRed);
 }
 
 .valid-email {
-  background-color: palegreen;
+  background-color: light-dark(palegreen, #426e42);
 }
 
 .input-section {
