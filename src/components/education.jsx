@@ -13,25 +13,30 @@ export function Education({
       <div className="input-section">
         <div>
           <label>
-            School Name
+            School Name:&nbsp;
             <input id="schoolName" value={schoolName} onChange={onChange} />
           </label>
         </div>
         <div>
           <label>
-            Title
+            Title:&nbsp;
             <input id="studyTitle" value={studyTitle} onChange={onChange} />
           </label>
         </div>
         <div>
           <label>
-            Year
-            <input id="studyYear" value={studyYear} onChange={onChange} />
+            Year:&nbsp;
+            <input
+              type="date"
+              id="studyYear"
+              value={studyYear}
+              onChange={onChange}
+            />
           </label>
         </div>
         <div>
           <label htmlFor="studyDescription">
-            Comment/Description
+            Comment/Description:&nbsp;
             <textarea
               id="studyDescription"
               value={studyDescription}

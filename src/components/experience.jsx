@@ -14,31 +14,41 @@ export function ProfessionalExperience({
       <div className="input-section">
         <div>
           <label>
-            Company
+            Company:&nbsp;
             <input id="companyName" value={companyName} onChange={onChange} />
           </label>
         </div>
         <div>
           <label>
-            Job Title
+            Job Title:&nbsp;
             <input id="jobTitle" value={jobTitle} onChange={onChange} />
           </label>
         </div>
         <div>
           <label>
-            Start date
-            <input id="startDate" value={startDate} onChange={onChange} />
+            Start date:&nbsp;
+            <input
+              type="date"
+              id="startDate"
+              value={startDate}
+              onChange={onChange}
+            />
           </label>
         </div>
         <div>
           <label>
-            End date
-            <input id="endDate" value={endDate} onChange={onChange} />
+            End date:&nbsp;
+            <input
+              type="date"
+              id="endDate"
+              value={endDate}
+              onChange={onChange}
+            />
           </label>
         </div>
         <div>
           <label htmlFor="jobDescription">
-            Comment/Description
+            Comment/Description:&nbsp;
             <textarea
               id="jobDescription"
               value={jobDescription}
