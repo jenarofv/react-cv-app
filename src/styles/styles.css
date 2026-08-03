@@ -1,3 +1,7 @@
+:root {
+  --cv-width: 90%;
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -9,7 +13,6 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
-
 .invalid-email {
   background-color: light-dark(pink, indianRed);
 }
@@ -45,4 +48,23 @@ button + div {
 .phone-email-container {
   display: flex;
   justify-content: space-around;
+}
+
+.education-output {
+  width: var(--cv-width);
+  margin-left: auto;
+  margin-right: auto;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  section {
+    text-align: left;
+  }
+
+  h3 {
+    margin-block: 0.5em;
+  }
 }

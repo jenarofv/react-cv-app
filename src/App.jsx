@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 import { ContactInfo } from "./components/contactInfo.jsx";
-import { Education } from "./components/education.jsx";
+import { EducationInput, EducationOutput } from "./components/education.jsx";
+import { addEducationEntry } from "./functions/handleEducationUpdate.jsx";
 import { ProfessionalExperience } from "./components/experience.jsx";
 import { OutputContactInfo } from "./components/Output.jsx";
 
@@ -21,10 +22,7 @@ function App() {
   const [lastName, setLastName] = useState("");
   const [telephoneNumber, setTelephoneNumber] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
-  const [schoolName, setSchoolName] = useState("");
-  const [studyTitle, setStudyTitle] = useState("");
-  const [studyYear, setStudyYear] = useState(today);
-  const [studyDescription, setStudyDescription] = useState("");
+  const [educationData, setEducationData] = useState([]);
   const [jobTitle, setJobTitle] = useState("");
   const [companyName, setCompanyName] = useState("");
   const [startDate, setStartDate] = useState(today);
@@ -41,19 +39,6 @@ function App() {
       startDate: setStartDate,
       endDate: setEndDate,
       jobDescription: setJobDescription,
-    };
-    functions[id](value);
-  }
-
-  function handleEducationUpdate(event) {
-    const target = event.target;
-    const id = target.id;
-    const value = target.value;
-    const functions = {
-      schoolName: setSchoolName,
-      studyTitle: setStudyTitle,
-      studyYear: setStudyYear,
-      studyDescription: setStudyDescription,
     };
     functions[id](value);
   }
@@ -90,6 +75,7 @@ function App() {
         if (!value.match(emailRegexp)) {
           target.classList.add("invalid-email");
         } else {
+          target.classList.remove("invalid-email");
           target.classList.add("valid-email");
         }
         break;
@@ -109,12 +95,8 @@ function App() {
         onChange={handleContactInfoUpdate}
       />
       <hr />
-      <Education
-        schoolName={schoolName}
-        studyTitle={studyTitle}
-        studyYear={studyYear}
-        studyDescription={studyDescription}
-        onChange={handleEducationUpdate}
+      <EducationInput
+        onChange={addEducationEntry(educationData, setEducationData)}
       />
       <hr />
       <ProfessionalExperience
@@ -133,6 +115,7 @@ function App() {
         telephoneNumber={telephoneNumber}
         emailAddress={emailAddress}
       />
+      <EducationOutput data={educationData} />
     </>
   );
 }

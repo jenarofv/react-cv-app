@@ -1,52 +1,61 @@
 import "../styles/styles.css";
+import { renderDate } from "../functions/renderDate.js";
 
-export function Education({
-  schoolName,
-  studyTitle,
-  studyYear,
-  studyDescription,
-  onChange,
-}) {
+export function EducationInput({ onChange }) {
   return (
-    <div className="input-container">
+    <form className="input-container">
       <h2>Education</h2>
       <div className="input-section">
         <div>
           <label>
             School Name:&nbsp;
-            <input id="schoolName" value={schoolName} onChange={onChange} />
+            <input id="schoolName" />
           </label>
         </div>
         <div>
           <label>
             Title:&nbsp;
-            <input id="studyTitle" value={studyTitle} onChange={onChange} />
+            <input id="studyTitle" />
           </label>
         </div>
         <div>
           <label>
             Year:&nbsp;
-            <input
-              type="date"
-              id="studyYear"
-              value={studyYear}
-              onChange={onChange}
-            />
+            <input type="date" id="studyYear" />
           </label>
         </div>
         <div>
-          <label htmlFor="studyDescription">
+          <label>
             Comment/Description:&nbsp;
-            <textarea
-              id="studyDescription"
-              value={studyDescription}
-              onChange={onChange}
-              maxLength="500"
-            />
+            <textarea id="studyDescription" maxLength="500" />
           </label>
         </div>
       </div>
-      <button> add info </button>
+      <button onClick={onChange}> add info </button>
+    </form>
+  );
+}
+
+export function EducationOutput({ data }) {
+  const educationDisplay = data.map((entry, index) => (
+    <div className="education-output" key={index}>
+      <header>
+        <h3> {entry.schoolName} </h3>
+        <h3> {renderDate(entry.studyYear)} </h3>
+      </header>
+      <section>
+        <h3> {entry.studyTitle} </h3>
+        <p> {entry.studyDescription}</p>
+      </section>
+      <button> edit </button>
+      <button> delete </button>
+    </div>
+  ));
+  console.log(educationDisplay);
+  return (
+    <div className="output">
+      <h2> Education </h2>
+      {educationDisplay}
     </div>
   );
 }
