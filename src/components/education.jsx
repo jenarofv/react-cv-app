@@ -1,5 +1,6 @@
 import "../styles/styles.css";
 import { renderDate } from "../functions/renderDate.js";
+import { deleteEntry } from "../functions/deleteEntry.js";
 
 export function EducationInput({ onChange }) {
   return (
@@ -48,10 +49,9 @@ export function EducationOutput({ data }) {
         <p> {entry.studyDescription}</p>
       </section>
       <button> edit </button>
-      <button> delete </button>
+      <button onClick={deleteEntry}> delete </button>
     </div>
   ));
-  console.log(educationDisplay);
   return (
     <div className="output">
       <h2> Education </h2>
