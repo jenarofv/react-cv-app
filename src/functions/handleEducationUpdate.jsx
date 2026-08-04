@@ -1,17 +1,16 @@
-export function addEducationEntry(state, setState) {
+export function addEntry(state, setState) {
   return (event) => {
     event.preventDefault();
     const nodes = event.target.previousElementSibling.childNodes;
-    const newEducationEntry = {};
+    const newStateEntry = {};
     for (const div of nodes) {
-      if (div.firstElementChild.firstElementChild.value === "") {
+      const inputNode = div.firstElementChild.firstElementChild;
+      if (inputNode.value === "") {
         return;
       }
-      newEducationEntry[div.firstElementChild.firstElementChild.id] =
-        div.firstElementChild.firstElementChild.value;
+      newStateEntry[inputNode.id] = inputNode.value;
+      inputNode.value = "";
     }
-    console.log(newEducationEntry);
-    setState([...state, newEducationEntry]);
-    console.log(state);
+    setState([...state, newStateEntry]);
   };
 }

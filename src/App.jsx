@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import { ContactInfo } from "./components/contactInfo.jsx";
 import { EducationInput, EducationOutput } from "./components/education.jsx";
-import { addEducationEntry } from "./functions/handleEducationUpdate.jsx";
+import { addEntry } from "./functions/handleEducationUpdate.jsx";
 import { ProfessionalExperience } from "./components/experience.jsx";
 import { OutputContactInfo } from "./components/Output.jsx";
 
@@ -95,9 +95,7 @@ function App() {
         onChange={handleContactInfoUpdate}
       />
       <hr />
-      <EducationInput
-        onChange={addEducationEntry(educationData, setEducationData)}
-      />
+      <EducationInput onChange={addEntry(educationData, setEducationData)} />
       <hr />
       <ProfessionalExperience
         jobTitle={jobTitle}
