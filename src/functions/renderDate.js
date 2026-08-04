@@ -21,5 +21,5 @@ export function renderDate(dateString) {
     "Nov",
     "Dec",
   ];
-  return `${yearString} ${months[monthNumber]}`;
+  return `${months[monthNumber]} ${yearString}`;
 }
