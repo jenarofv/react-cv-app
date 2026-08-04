@@ -11,7 +11,7 @@ export function OutputContactInfo({
       <h2>{`${firstName !== "" ? firstName : ""} ${lastName}`}</h2>
       <div className="phone-email-container">
         <h3>
-          {telephoneNumber.length > 0 ? `Telephone: ` : ""}
+          {telephoneNumber.length > 0 ? `📞: ` : ""}
           <a href={`tel:${telephoneNumber}`}>{telephoneNumber}</a>
         </h3>
         <h3>
