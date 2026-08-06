@@ -6,18 +6,7 @@ import { addEntry } from "./functions/handleEducationUpdate.jsx";
 import { ProfessionalExperience } from "./components/experience.jsx";
 import { OutputContactInfo } from "./components/Output.jsx";
 
-function getToday() {
-  const now = new Date();
-  const year = now.getFullYear();
-  const monthNumber = now.getMonth() + 1;
-  const monthString = monthNumber < 10 ? `0${monthNumber}` : `${monthNumber}`;
-  const date = now.getDate();
-  const dateString = `${year}-${monthString}-${date}`;
-  return dateString;
-}
-
 function App() {
-  const today = getToday();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [telephoneNumber, setTelephoneNumber] = useState("");
