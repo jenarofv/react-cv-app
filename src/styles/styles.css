@@ -50,7 +50,8 @@ button + div {
   justify-content: space-around;
 }
 
-.education-output {
+.education-output,
+.experience-output {
   width: var(--cv-width);
   margin-left: auto;
   margin-right: auto;
@@ -67,4 +68,8 @@ button + div {
   h3 {
     margin-block: 0.5em;
   }
+}
+
+.years h3 {
+  display: inline;
 }

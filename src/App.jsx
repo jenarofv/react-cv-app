@@ -3,7 +3,10 @@ import "./App.css";
 import { ContactInfo } from "./components/contactInfo.jsx";
 import { EducationInput, EducationOutput } from "./components/education.jsx";
 import { addEntry } from "./functions/handleEducationUpdate.jsx";
-import { ProfessionalExperience } from "./components/experience.jsx";
+import {
+  ProfessionalExperience,
+  ProfessionalExperienceOutput,
+} from "./components/experience.jsx";
 import { OutputContactInfo } from "./components/Output.jsx";
 
 function App() {
@@ -12,25 +15,7 @@ function App() {
   const [telephoneNumber, setTelephoneNumber] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [educationData, setEducationData] = useState([]);
-  const [jobTitle, setJobTitle] = useState("");
-  const [companyName, setCompanyName] = useState("");
-  const [startDate, setStartDate] = useState(today);
-  const [endDate, setEndDate] = useState(today);
-  const [jobDescription, setJobDescription] = useState("");
-
-  function handleExperienceUpdate(event) {
-    const target = event.target;
-    const id = target.id;
-    const value = target.value;
-    const functions = {
-      companyName: setCompanyName,
-      jobTitle: setJobTitle,
-      startDate: setStartDate,
-      endDate: setEndDate,
-      jobDescription: setJobDescription,
-    };
-    functions[id](value);
-  }
+  const [experienceData, setExperienceData] = useState([]);
 
   function handleContactInfoUpdate(event) {
     const id = event.target.id;
@@ -87,12 +72,7 @@ function App() {
       <EducationInput onChange={addEntry(educationData, setEducationData)} />
       <hr />
       <ProfessionalExperience
-        jobTitle={jobTitle}
-        companyName={companyName}
-        startDate={startDate}
-        endDate={endDate}
-        jobDescription={jobDescription}
-        onChange={handleExperienceUpdate}
+        onChange={addEntry(experienceData, setExperienceData)}
       />
       <hr />
       <h2> Output CV </h2>
@@ -103,6 +83,7 @@ function App() {
         emailAddress={emailAddress}
       />
       <EducationOutput data={educationData} />
+      <ProfessionalExperienceOutput data={experienceData} />
     </>
   );
 }
