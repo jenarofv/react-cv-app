@@ -3,6 +3,7 @@ import "./App.css";
 import { ContactInfo } from "./components/contactInfo.jsx";
 import { EducationInput, EducationOutput } from "./components/education.jsx";
 import { addEntry } from "./functions/handleEducationUpdate.jsx";
+import { getDate } from "./functions/renderDate.js";
 import {
   ProfessionalExperience,
   ProfessionalExperienceOutput,
@@ -16,6 +17,25 @@ function App() {
   const [emailAddress, setEmailAddress] = useState("");
   const [educationData, setEducationData] = useState([]);
   const [experienceData, setExperienceData] = useState([]);
+
+  function editEntry(event) {
+    const entry = event.target.parentElement;
+    const header = entry.firstElementChild;
+    const place = header.firstElementChild.innerText;
+    const title = entry.childNodes[1].firstElementChild.innerText;
+    const description = entry.childNodes[1].childNodes[1].innerText;
+    let dates;
+    if (entry.classList.contains("education-output")) {
+      dates = getDate(header.childNodes[1].innerText);
+    } else {
+      // add start date and end date.
+      dates = [
+        getDate(header.lastElementChild.firstElementChild.innerText),
+        getDate(header.lastElementChild.lastElementChild.innerText),
+      ];
+    }
+    console.log(dates);
+  }
 
   function handleContactInfoUpdate(event) {
     const id = event.target.id;
@@ -82,8 +102,8 @@ function App() {
         telephoneNumber={telephoneNumber}
         emailAddress={emailAddress}
       />
-      <EducationOutput data={educationData} />
-      <ProfessionalExperienceOutput data={experienceData} />
+      <EducationOutput data={educationData} onEdit={editEntry} />
+      <ProfessionalExperienceOutput data={experienceData} onEdit={editEntry} />
     </>
   );
 }

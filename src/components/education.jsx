@@ -1,6 +1,6 @@
 import "../styles/styles.css";
 import { renderDate } from "../functions/renderDate.js";
-import { deleteEntry, editEntry } from "../functions/modifyEntry.js";
+import { deleteEntry } from "../functions/modifyEntry.js";
 
 export function EducationInput({ onChange }) {
   return (
@@ -37,7 +37,7 @@ export function EducationInput({ onChange }) {
   );
 }
 
-export function EducationOutput({ data }) {
+export function EducationOutput({ data, onEdit }) {
   const educationDisplay = data.map((entry, index) => (
     <div className="education-output" key={index}>
       <header>
@@ -48,7 +48,7 @@ export function EducationOutput({ data }) {
         <h3> {entry.studyTitle} </h3>
         <p> {entry.studyDescription}</p>
       </section>
-      <button onClick={editEntry}> edit </button>
+      <button onClick={onEdit}> edit </button>
       <button onClick={deleteEntry}> delete </button>
     </div>
   ));

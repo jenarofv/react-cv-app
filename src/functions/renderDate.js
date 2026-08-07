@@ -16,6 +16,11 @@ const months = [
   "Dec",
 ];
 
+function zeroPad(number) {
+  const numerAsString = number < 10 ? `0${number}` : `number`;
+  return numerAsString;
+}
+
 export function renderDate(dateString) {
   if (dateString === "") {
     return;
@@ -30,8 +35,7 @@ export function getDate(dateString) {
     return;
   }
   const monthName = dateString.slice(0, 3);
-  console.log(monthName);
-  const yearString = dateString.slice(4);
-  console.log(months.indexOf("Aug"));
-  return `${yearString}-${months.indexOf[monthName] + 1}-01`;
+  const yearString = dateString.slice(4, 8);
+  const monthNumber = zeroPad(months.indexOf(monthName) + 1);
+  return `${yearString}-${monthNumber}-01`;
 }

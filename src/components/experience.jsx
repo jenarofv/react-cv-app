@@ -1,6 +1,6 @@
 import "../styles/styles.css";
 import { renderDate } from "../functions/renderDate.js";
-import { deleteEntry, editEntry } from "../functions/modifyEntry.js";
+import { deleteEntry } from "../functions/modifyEntry.js";
 
 export function ProfessionalExperience({ onChange }) {
   return (
@@ -43,7 +43,7 @@ export function ProfessionalExperience({ onChange }) {
   );
 }
 
-export function ProfessionalExperienceOutput({ data }) {
+export function ProfessionalExperienceOutput({ data, onEdit }) {
   const experienceDisplay = data.map((entry, index) => (
     <div className="experience-output" key={index}>
       <header>
@@ -57,7 +57,7 @@ export function ProfessionalExperienceOutput({ data }) {
         <h3> {entry.jobTitle} </h3>
         <p> {entry.jobDescription}</p>
       </section>
-      <button onClick={editEntry}> edit </button>
+      <button onClick={onEdit}> edit </button>
       <button onClick={deleteEntry}> delete </button>
     </div>
   ));
