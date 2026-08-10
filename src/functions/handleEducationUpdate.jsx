@@ -3,6 +3,7 @@ export function addEntry(state, setState) {
     event.preventDefault();
     const nodes = event.target.previousElementSibling.childNodes;
     const newStateEntry = {};
+    const length = state.length;
     for (const div of nodes) {
       const inputNode = div.firstElementChild.firstElementChild;
       if (inputNode.value === "") {
@@ -11,6 +12,7 @@ export function addEntry(state, setState) {
       newStateEntry[inputNode.id] = inputNode.value;
       inputNode.value = "";
     }
+    newStateEntry["key"] = length;
     setState([...state, newStateEntry]);
   };
 }

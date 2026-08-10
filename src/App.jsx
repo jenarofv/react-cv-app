@@ -16,25 +16,16 @@ function App() {
   const [telephoneNumber, setTelephoneNumber] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [educationData, setEducationData] = useState([]);
+  // const [educationKey, setEducationKey] = useState(0);
+  // const [experienceKey, setexperienceKey] = useState(0);
   const [experienceData, setExperienceData] = useState([]);
 
   function editEntry(event) {
+    // get entry from educationData
+    // display it in EducationInput
+    // on submit, replace entry from EducationData with EducationInput result
     const entry = event.target.parentElement;
-    const header = entry.firstElementChild;
-    const place = header.firstElementChild.innerText;
-    const title = entry.childNodes[1].firstElementChild.innerText;
-    const description = entry.childNodes[1].childNodes[1].innerText;
-    let dates;
-    if (entry.classList.contains("education-output")) {
-      dates = getDate(header.childNodes[1].innerText);
-    } else {
-      // add start date and end date.
-      dates = [
-        getDate(header.lastElementChild.firstElementChild.innerText),
-        getDate(header.lastElementChild.lastElementChild.innerText),
-      ];
-    }
-    console.log(dates);
+    console.log(entry.parentElement.childNodes);
   }
 
   function handleContactInfoUpdate(event) {

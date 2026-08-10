@@ -38,8 +38,8 @@ export function EducationInput({ onChange }) {
 }
 
 export function EducationOutput({ data, onEdit }) {
-  const educationDisplay = data.map((entry, index) => (
-    <div className="education-output" key={index}>
+  const educationDisplay = data.map((entry) => (
+    <div className="education-output" key={entry.key}>
       <header>
         <h3> {entry.schoolName} </h3>
         <h3> {renderDate(entry.studyYear)} </h3>
