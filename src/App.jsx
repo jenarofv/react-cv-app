@@ -2,8 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import { ContactInfo } from "./components/contactInfo.jsx";
 import { EducationInput, EducationOutput } from "./components/education.jsx";
-// import { addEntry } from "./functions/handleEducationUpdate.jsx";
-import { getDate } from "./functions/renderDate.js";
+import { handleContactInfoUpdate } from "./functions/handleContactInfoUpdate.jsx";
 import {
   ProfessionalExperience,
   ProfessionalExperienceOutput,
@@ -18,11 +17,9 @@ function App() {
   const [emailAddress, setEmailAddress] = useState("");
   const [educationData, setEducationData] = useState([]);
   let educationKey = 0;
-  let experienceKey = 0;
   // const [experienceKey, setexperienceKey] = useState(0);
-  const [experienceData, setExperienceData] = useState([]);
 
-  function addEntry(state, setState, numOfEntry) {
+  function addEntry(state, setState) {
     return (event) => {
       event.preventDefault();
       const nodes = event.target.previousElementSibling.childNodes;
@@ -75,63 +72,22 @@ function App() {
     };
   }
 
-  function handleContactInfoUpdate(event) {
-    const id = event.target.id;
-    const target = event.target;
-    const value = event.target.value;
-    const lastChar = value.charAt(value.length - 1);
-    const emailRegexp = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    switch (id) {
-      case "firstNameInput":
-        setFirstName(value);
-        break;
-      case "lastNameInput":
-        setLastName(value);
-        break;
-      case "telephoneInput":
-        if (event.nativeEvent.inputType === "deleteContentBackward") {
-          setTelephoneNumber(value);
-          return;
-        }
-        if (!lastChar.match(/^[0-9]$/)) {
-          throw new TypeError(`${lastChar} is not a number`);
-        }
-        if ([4, 8].includes(value.length)) {
-          setTelephoneNumber(value.slice(0, value.length - 1) + "-" + lastChar);
-        } else {
-          setTelephoneNumber(value);
-        }
-        break;
-      case "emailInput":
-        setEmailAddress(value);
-        if (!value.match(emailRegexp)) {
-          target.classList.add("invalid-email");
-        } else {
-          target.classList.remove("invalid-email");
-          target.classList.add("valid-email");
-        }
-        break;
-    }
-  }
-
   return (
     <>
       <div>
         <h1>CV Creator</h1>
       </div>
       <ContactInfo
-        firstName={firstName}
-        lastName={lastName}
-        tel={telephoneNumber}
-        email={emailAddress}
-        onChange={handleContactInfoUpdate}
+        onChange={handleContactInfoUpdate(
+          setFirstName,
+          setLastName,
+          setTelephoneNumber,
+          setEmailAddress,
+        )}
       />
       <hr />
       <EducationInput onChange={addEntry(educationData, setEducationData)} />
       <hr />
-      <ProfessionalExperience
-        onChange={addEntry(experienceData, setExperienceData)}
-      />
       <hr />
       <h2> Output CV </h2>
       <OutputContactInfo
@@ -145,7 +101,6 @@ function App() {
         onEdit={editEntry}
         onDelete={deleteEntry(educationData, setEducationData)}
       />
-      <ProfessionalExperienceOutput data={experienceData} onEdit={editEntry} />
     </>
   );
 }

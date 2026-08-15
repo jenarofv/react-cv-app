@@ -1,6 +1,6 @@
 import "../styles/styles.css";
 import { renderDate } from "../functions/renderDate.js";
-import { deleteEntry } from "../functions/modifyEntry.js";
+// import { deleteEntry } from "../functions/modifyEntry.js";
 
 export function ProfessionalExperience({ onChange }) {
   return (
@@ -58,7 +58,7 @@ export function ProfessionalExperienceOutput({ data, onEdit }) {
         <p> {entry.jobDescription}</p>
       </section>
       <button onClick={onEdit}> edit </button>
-      <button onClick={deleteEntry}> delete </button>
+      <button> delete </button>
     </div>
   ));
   return (

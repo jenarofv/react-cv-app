@@ -1,6 +1,6 @@
 import "../styles/styles.css";
 
-export function ContactInfo({ firstName, lastName, tel, email, onChange }) {
+export function ContactInfo({ onChange }) {
   return (
     <div className="input-container">
       <h2>Contact Info</h2>
@@ -8,35 +8,25 @@ export function ContactInfo({ firstName, lastName, tel, email, onChange }) {
         <div>
           <label>
             First name:
-            <input id="firstNameInput" value={firstName} onChange={onChange} />
+            <input id="firstNameInput" onChange={onChange} />
           </label>
         </div>
         <div>
           <label>
             Last name:
-            <input id="lastNameInput" value={lastName} onChange={onChange} />
+            <input id="lastNameInput" onChange={onChange} />
           </label>
         </div>
         <div>
           <label>
             Telephone:
-            <input
-              type="tel"
-              id="telephoneInput"
-              value={tel}
-              onChange={onChange}
-            />
+            <input type="tel" id="telephoneInput" onChange={onChange} />
           </label>
         </div>
         <div>
           <label>
             Email:
-            <input
-              type="text"
-              id="emailInput"
-              value={email}
-              onChange={onChange}
-            />
+            <input type="text" id="emailInput" onChange={onChange} />
           </label>
         </div>
       </div>
