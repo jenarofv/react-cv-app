@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import { ContactInfo } from "./components/contactInfo.jsx";
 import { EducationInput, EducationOutput } from "./components/education.jsx";
-import { addEntry } from "./functions/handleEducationUpdate.jsx";
+// import { addEntry } from "./functions/handleEducationUpdate.jsx";
 import { getDate } from "./functions/renderDate.js";
 import {
   ProfessionalExperience,
@@ -11,21 +11,68 @@ import {
 import { OutputContactInfo } from "./components/Output.jsx";
 
 function App() {
+  let numOfEntry = undefined;
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [telephoneNumber, setTelephoneNumber] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [educationData, setEducationData] = useState([]);
-  // const [educationKey, setEducationKey] = useState(0);
+  let educationKey = 0;
+  let experienceKey = 0;
   // const [experienceKey, setexperienceKey] = useState(0);
   const [experienceData, setExperienceData] = useState([]);
 
-  function editEntry(event) {
-    // get entry from educationData
-    // display it in EducationInput
-    // on submit, replace entry from EducationData with EducationInput result
-    const entry = event.target.parentElement;
-    console.log(entry.parentElement.childNodes);
+  function addEntry(state, setState, numOfEntry) {
+    return (event) => {
+      event.preventDefault();
+      const nodes = event.target.previousElementSibling.childNodes;
+      const newStateEntry = {};
+      for (const div of nodes) {
+        const inputNode = div.firstElementChild.firstElementChild;
+        if (inputNode.value === "") {
+          return;
+        }
+        newStateEntry[inputNode.id] = inputNode.value;
+        inputNode.value = "";
+      }
+      newStateEntry["key"] = educationKey++;
+      if (numOfEntry !== undefined) {
+        setState([
+          ...state.slice(0, numOfEntry),
+          newStateEntry,
+          ...state.slice(numOfEntry + 1),
+        ]);
+        numOfEntry = undefined;
+      } else {
+        setState([...state, newStateEntry]);
+      }
+    };
+  }
+
+  function editEntry(key) {
+    return (event) => {
+      const entry = educationData[key];
+      console.log(entry);
+      numOfEntry = entry.key;
+      // display education info in EducationInput
+      const schoolName = document.getElementById("schoolName");
+      const title = document.getElementById("studyTitle");
+      const description = document.getElementById("studyDescription");
+      const year = document.getElementById("studyYear");
+      schoolName.value = entry.schoolName;
+      title.value = entry.schoolName;
+      description.value = entry.studyDescription;
+      year.value = entry.studyYear;
+      return;
+    };
+  }
+
+  function deleteEntry(state, setState, key) {
+    return (key) => {
+      // should remove entry from educationData or experienceData
+      const newState = state.filter((entry) => entry.key !== key);
+      setState(newState);
+    };
   }
 
   function handleContactInfoUpdate(event) {
@@ -93,7 +140,11 @@ function App() {
         telephoneNumber={telephoneNumber}
         emailAddress={emailAddress}
       />
-      <EducationOutput data={educationData} onEdit={editEntry} />
+      <EducationOutput
+        data={educationData}
+        onEdit={editEntry}
+        onDelete={deleteEntry(educationData, setEducationData)}
+      />
       <ProfessionalExperienceOutput data={experienceData} onEdit={editEntry} />
     </>
   );
