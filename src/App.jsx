@@ -3,14 +3,15 @@ import "./App.css";
 import { ContactInfo } from "./components/contactInfo.jsx";
 import { EducationInput, EducationOutput } from "./components/education.jsx";
 import { handleContactInfoUpdate } from "./functions/handleContactInfoUpdate.jsx";
-import {
-  ProfessionalExperience,
-  ProfessionalExperienceOutput,
-} from "./components/experience.jsx";
+import { getEntry } from "./functions/getEntry.jsx";
+// import {
+//   ProfessionalExperience,
+//   ProfessionalExperienceOutput,
+// } from "./components/experience.jsx";
 import { OutputContactInfo } from "./components/Output.jsx";
 
 function App() {
-  let numOfEntry = undefined;
+  const [modKey, setModKey] = useState();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [telephoneNumber, setTelephoneNumber] = useState("");
@@ -21,54 +22,53 @@ function App() {
 
   function addEntry(state, setState) {
     return (event) => {
-      event.preventDefault();
-      const nodes = event.target.previousElementSibling.childNodes;
-      const newStateEntry = {};
-      for (const div of nodes) {
-        const inputNode = div.firstElementChild.firstElementChild;
-        if (inputNode.value === "") {
-          return;
-        }
-        newStateEntry[inputNode.id] = inputNode.value;
-        inputNode.value = "";
-      }
-      newStateEntry["key"] = educationKey++;
-      if (numOfEntry !== undefined) {
-        setState([
-          ...state.slice(0, numOfEntry),
-          newStateEntry,
-          ...state.slice(numOfEntry + 1),
-        ]);
-        numOfEntry = undefined;
+      const newEntry = getEntry(event);
+      console.log(newEntry);
+      let newState;
+      let others;
+      console.log("adding entry...");
+      if (modKey === undefined) {
+        console.log("adding NEW entry...");
+        newEntry.key = educationKey++;
+        newState = [...state, newEntry];
       } else {
-        setState([...state, newStateEntry]);
+        console.log(`editing entry ${modKey}...`);
+        newEntry.key = educationKey++;
+        others = state.filter((entry) => entry.key !== modKey);
+        newEntry.key = modKey;
+        newState = [...others, newEntry];
       }
-    };
-  }
-
-  function editEntry(key) {
-    return (event) => {
-      const entry = educationData[key];
-      console.log(entry);
-      numOfEntry = entry.key;
-      // display education info in EducationInput
-      const schoolName = document.getElementById("schoolName");
-      const title = document.getElementById("studyTitle");
-      const description = document.getElementById("studyDescription");
-      const year = document.getElementById("studyYear");
-      schoolName.value = entry.schoolName;
-      title.value = entry.schoolName;
-      description.value = entry.studyDescription;
-      year.value = entry.studyYear;
-      return;
-    };
-  }
-
-  function deleteEntry(state, setState, key) {
-    return (key) => {
-      // should remove entry from educationData or experienceData
-      const newState = state.filter((entry) => entry.key !== key);
+      console.log("setting state");
+      console.log(newState);
       setState(newState);
+    };
+  }
+
+  function editEntry(state, setState) {
+    return (key) => {
+      return (event) => {
+        const entry = educationData[key];
+        setModKey(entry.key);
+        // display education info in EducationInput
+        const schoolName = document.getElementById("schoolName");
+        const title = document.getElementById("studyTitle");
+        const description = document.getElementById("studyDescription");
+        const year = document.getElementById("studyYear");
+        schoolName.value = entry.schoolName;
+        title.value = entry.studyTitle;
+        description.value = entry.studyDescription;
+        year.value = entry.studyYear;
+      };
+    };
+  }
+
+  function deleteEntry(state, setState) {
+    return (key) => {
+      return (event) => {
+        // should remove entry from educationData or experienceData
+        const newState = state.filter((entry) => entry.key !== key);
+        setState(newState);
+      };
     };
   }
 
@@ -98,7 +98,7 @@ function App() {
       />
       <EducationOutput
         data={educationData}
-        onEdit={editEntry}
+        onEdit={editEntry(educationData, setEducationData)}
         onDelete={deleteEntry(educationData, setEducationData)}
       />
     </>
