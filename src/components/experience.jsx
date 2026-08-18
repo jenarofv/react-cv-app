@@ -2,7 +2,7 @@ import "../styles/styles.css";
 import { renderDate } from "../functions/renderDate.js";
 // import { deleteEntry } from "../functions/modifyEntry.js";
 
-export function ProfessionalExperience({ onChange }) {
+export function ExperienceInput({ onChange }) {
   return (
     <div className="input-container">
       <h2>Professional Experience</h2>
@@ -43,7 +43,7 @@ export function ProfessionalExperience({ onChange }) {
   );
 }
 
-export function ProfessionalExperienceOutput({ data, onEdit }) {
+export function ExperienceOutput({ data, onEdit, onDelete }) {
   const experienceDisplay = data.map((entry, index) => (
     <div className="experience-output" key={index}>
       <header>
@@ -57,8 +57,8 @@ export function ProfessionalExperienceOutput({ data, onEdit }) {
         <h3> {entry.jobTitle} </h3>
         <p> {entry.jobDescription}</p>
       </section>
-      <button onClick={onEdit}> edit </button>
-      <button> delete </button>
+      <button onClick={onEdit(entry.key)}> edit </button>
+      <button onClick={onDelete(entry.key)}> delete </button>
     </div>
   ));
   return (

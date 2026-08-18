@@ -4,10 +4,7 @@ import { ContactInfo } from "./components/contactInfo.jsx";
 import { EducationInput, EducationOutput } from "./components/education.jsx";
 import { handleContactInfoUpdate } from "./functions/handleContactInfoUpdate.jsx";
 import { getEntry } from "./functions/getEntry.jsx";
-// import {
-//   ProfessionalExperience,
-//   ProfessionalExperienceOutput,
-// } from "./components/experience.jsx";
+import { ExperienceInput, ExperienceOutput } from "./components/experience.jsx";
 import { OutputContactInfo } from "./components/Output.jsx";
 
 function App() {
@@ -17,6 +14,7 @@ function App() {
   const [telephoneNumber, setTelephoneNumber] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [educationData, setEducationData] = useState([]);
+  const [experienceData, setExperienceData] = useState([]);
   let educationKey = 0;
   // const [experienceKey, setexperienceKey] = useState(0);
 
@@ -44,7 +42,7 @@ function App() {
     };
   }
 
-  function editEntry(state) {
+  function editEducationEntry(state) {
     return (key) => {
       return () => {
         const entry = state[key];
@@ -58,6 +56,26 @@ function App() {
         title.value = entry.studyTitle;
         description.value = entry.studyDescription;
         year.value = entry.studyYear;
+      };
+    };
+  }
+
+  function editExperienceEntry(state) {
+    return (key) => {
+      return () => {
+        const entry = state[key];
+        setModKey(entry.key);
+        // display education info in EducationInput
+        const company = document.getElementById("companyName");
+        const jobTitle = document.getElementById("jobTitle");
+        const description = document.getElementById("jobDescription");
+        const startDate = document.getElementById("startDate");
+        const endDate = document.getElementById("endDate");
+        company.value = entry.companyName;
+        jobTitle.value = entry.jobTitle;
+        description.value = entry.jobDescription;
+        startDate.value = entry.startDate;
+        endDate.value = entry.endDate;
       };
     };
   }
@@ -87,6 +105,7 @@ function App() {
       />
       <hr />
       <EducationInput onChange={addEntry(educationData, setEducationData)} />
+      <ExperienceInput onChange={addEntry(experienceData, setExperienceData)} />
       <hr />
       <hr />
       <h2> Output CV </h2>
@@ -98,8 +117,13 @@ function App() {
       />
       <EducationOutput
         data={educationData}
-        onEdit={editEntry(educationData)}
+        onEdit={editEducationEntry(educationData)}
         onDelete={deleteEntry(educationData, setEducationData)}
+      />
+      <ExperienceOutput
+        data={experienceData}
+        onEdit={editExperienceEntry(experienceData)}
+        onDelete={deleteEntry(experienceData, setExperienceData)}
       />
     </>
   );
