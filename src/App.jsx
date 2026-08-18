@@ -44,10 +44,10 @@ function App() {
     };
   }
 
-  function editEntry(state, setState) {
+  function editEntry(state) {
     return (key) => {
-      return (event) => {
-        const entry = educationData[key];
+      return () => {
+        const entry = state[key];
         setModKey(entry.key);
         // display education info in EducationInput
         const schoolName = document.getElementById("schoolName");
@@ -64,7 +64,7 @@ function App() {
 
   function deleteEntry(state, setState) {
     return (key) => {
-      return (event) => {
+      return () => {
         // should remove entry from educationData or experienceData
         const newState = state.filter((entry) => entry.key !== key);
         setState(newState);
@@ -98,7 +98,7 @@ function App() {
       />
       <EducationOutput
         data={educationData}
-        onEdit={editEntry(educationData, setEducationData)}
+        onEdit={editEntry(educationData)}
         onDelete={deleteEntry(educationData, setEducationData)}
       />
     </>
